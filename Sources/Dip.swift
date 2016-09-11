@@ -724,16 +724,16 @@ private class ResolvedInstances {
       switch scope {
       case .Singleton, .EagerSingleton: return singletons[key]
       case .WeakSingleton: return (weakSingletons[key] as? WeakBoxType)?.unboxed ?? weakSingletons[key]
-      case .Shared, .ObjectGraph: return resolvedInstances[key]
-      case .Unique, .Prototype: return nil
+      case .Shared: return resolvedInstances[key]
+      case .Unique: return nil
       }
     }
     set {
       switch scope {
       case .Singleton, .EagerSingleton: singletons[key] = newValue
       case .WeakSingleton: weakSingletons[key] = newValue
-      case .Shared, .ObjectGraph: resolvedInstances[key] = newValue
-      case .Unique, .Prototype: break
+      case .Shared: resolvedInstances[key] = newValue
+      case .Unique: break
       }
     }
   }
@@ -907,18 +907,4 @@ public enum DipError: ErrorType, CustomStringConvertible {
     }
   }
   
-}
-
-//MARK: - Deprecated methods
-
-extension DependencyContainer {
-  @available(*, deprecated=4.3.0, message="Use register(_:tag:factory:numberOfArguments:autoWiringFactory:) instead.")
-  public func registerFactory<T, U>(tag tag: DependencyTagConvertible? = nil, scope: ComponentScope, factory: U throws -> T) -> Definition<T, U> {
-    let definition = DefinitionBuilder<T, U> {
-      $0.scope = scope
-      $0.factory = factory
-      }.build()
-    register(definition, tag: tag)
-    return definition
-  }
 }
