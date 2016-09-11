@@ -40,7 +40,7 @@ extension DependencyContainer {
     - scope: The scope to use for this component. Default value is `Shared`.
     - factory: The factory to register.
   
-  - seealso: `register(_:tag:factory:numberOfArguments:autoWiringFactory:)`
+  - seealso: `register(_:type:tag:factory:numberOfArguments:autoWiringFactory:)`
   */
   public func register<T, A>(scope: ComponentScope = .Shared, type: T.Type = T.self, tag: DependencyTagConvertible? = nil, factory: (A) throws -> T) -> Definition<T, A> {
     return register(scope, type: type, tag: tag, factory: factory, numberOfArguments: 1) { container, tag in try factory(container.resolve(tag: tag)) }

@@ -26,7 +26,7 @@ struct URLSessionNetworkLayer : NetworkLayer {
     }
     
     func request(path: String, completion: NetworkResponse -> Void) {
-        let url = self.baseURL.URLByAppendingPathComponent(path)
+        let url = self.baseURL.URLByAppendingPathComponent(path)!
         let task = session.dataTaskWithURL(url) { data, response, error in
             if let data = data, let response = response as? NSHTTPURLResponse {
                 dispatch_async(self.responseQueue) {

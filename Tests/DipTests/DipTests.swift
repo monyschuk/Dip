@@ -391,7 +391,7 @@ class DipTests: XCTestCase {
         return
     }
 
-    container.register(tag: "graph", .Shared) { ResolvableService() as Service }
+    container.register(tag: "graph") { ResolvableService() as Service }
       .resolvingProperties { _, service in
         XCTAssertFalse((service as! ResolvableService).didResolveDependenciesCalled, "didResolveDependencies should not be called yet")
         return

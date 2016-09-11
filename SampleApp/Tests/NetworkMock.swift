@@ -25,7 +25,7 @@ struct NetworkMock : NetworkLayer {
     }
     
     func request(path: String, completion: NetworkResponse -> Void) {
-        let fakeURL = NSURL(string: "stub://")!.URLByAppendingPathComponent(path)
+        let fakeURL = NSURL(string: "http://stub/")!.URLByAppendingPathComponent(path)
         if let data = fakeData {
             let response = NSHTTPURLResponse(URL: fakeURL, statusCode: 200, HTTPVersion: "1.1", headerFields:nil)!
             completion(.Success(data, response))

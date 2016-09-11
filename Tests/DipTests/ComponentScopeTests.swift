@@ -244,7 +244,7 @@ class ComponentScopeTests: XCTestCase {
         //then we don't want every next resolve of service for other tags to reuse it
         XCTAssertTrue(service2 is ServiceImp2)
     }
-    container.register(tag: "service", .Shared) { ServiceImp2() as Service}
+    container.register(tag: "service") { ServiceImp2() as Service}
     
     //when
     let service1 = try! container.resolve(tag: "tag") as Service

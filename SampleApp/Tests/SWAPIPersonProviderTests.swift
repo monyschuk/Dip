@@ -11,9 +11,9 @@ import Dip
 
 class SWAPIPersonProviderTests: XCTestCase {
     let fakePerson1 = ["name": "John Doe", "mass": "72", "height": "172", "eye_color": "brown", "hair_color": "black", "gender": "male",
-        "starships": ["stub://starship/7/", "stub://starship/15"], "url": "stub://people/1"]
+        "starships": ["http://stub/starship/7/", "http://stub/starship/15"], "url": "http://stub/people/1"]
     let fakePerson2 = ["name": "Jane Doe", "mass": "63", "height": "167", "eye_color": "blue", "hair_color": "red", "gender": "female",
-        "starships": ["stub://starship/11/"], "url": "stub://people/12"]
+        "starships": ["http://stub/starship/11/"], "url": "http://stub/people/12"]
     
     override func setUp() {
         super.setUp()

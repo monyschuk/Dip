@@ -192,7 +192,7 @@ class AutoWiringTests: XCTestCase {
     }
     
     //1 arg tagged
-    container.register(tag: "tag", .Shared) { AutoWiredClientImp(service1: $0, service2: try self.container.resolve()) as AutoWiredClient }
+    container.register(tag: "tag") { AutoWiredClientImp(service1: $0, service2: try self.container.resolve()) as AutoWiredClient }
     
     container.register { ServiceImp1() as Service }
     container.register { ServiceImp2() }
@@ -298,7 +298,7 @@ class AutoWiringTests: XCTestCase {
     
     var anotherInstance: AutoWiredClient?
     
-    container.register(tag: "tag", .Shared) { AutoWiredClientImp(service1: $0, service2: $1) as AutoWiredClient }
+    container.register(tag: "tag") { AutoWiredClientImp(service1: $0, service2: $1) as AutoWiredClient }
       .resolvingProperties { container, _ in
         if anotherInstance == nil {
           anotherInstance = try! container.resolve(tag: "tag") as AutoWiredClient
@@ -339,7 +339,7 @@ class AutoWiringTests: XCTestCase {
   func testThatItUsesTagToResolveDependenciesWithAutoWiringWith1Argument() {
     //given
     container.register { ServiceImp1() as Service }
-    container.register(tag: "tag", .Shared) { ServiceImp2() as Service }
+    container.register(tag: "tag") { ServiceImp2() as Service }
     
     container.register { (dep1: Service) -> ServiceImp3 in
       XCTAssertTrue(dep1 is ServiceImp2)
@@ -353,7 +353,7 @@ class AutoWiringTests: XCTestCase {
   func testThatItUsesTagToResolveDependenciesWithAutoWiringWith2Arguments() {
     //given
     container.register { ServiceImp1() as Service }
-    container.register(tag: "tag", .Shared) { ServiceImp2() as Service }
+    container.register(tag: "tag") { ServiceImp2() as Service }
     
     container.register { (dep1: Service, dep2: Service) -> ServiceImp3 in
       XCTAssertTrue(dep1 is ServiceImp2)
@@ -368,7 +368,7 @@ class AutoWiringTests: XCTestCase {
   func testThatItUsesTagToResolveDependenciesWithAutoWiringWith3Arguments() {
     //given
     container.register { ServiceImp1() as Service }
-    container.register(tag: "tag", .Shared) { ServiceImp2() as Service }
+    container.register(tag: "tag") { ServiceImp2() as Service }
     
     container.register { (dep1: Service, dep2: Service, dep3: Service) -> ServiceImp3 in
       XCTAssertTrue(dep1 is ServiceImp2)
@@ -384,7 +384,7 @@ class AutoWiringTests: XCTestCase {
   func testThatItUsesTagToResolveDependenciesWithAutoWiringWith4Arguments() {
     //given
     container.register { ServiceImp1() as Service }
-    container.register(tag: "tag", .Shared) { ServiceImp2() as Service }
+    container.register(tag: "tag") { ServiceImp2() as Service }
     
     container.register { (dep1: Service, dep2: Service, dep3: Service, dep4: Service) -> ServiceImp3 in
       XCTAssertTrue(dep1 is ServiceImp2)
@@ -401,7 +401,7 @@ class AutoWiringTests: XCTestCase {
   func testThatItUsesTagToResolveDependenciesWithAutoWiringWith5Arguments() {
     //given
     container.register { ServiceImp1() as Service }
-    container.register(tag: "tag", .Shared) { ServiceImp2() as Service }
+    container.register(tag: "tag") { ServiceImp2() as Service }
     
     container.register { (dep1: Service, dep2: Service, dep3: Service, dep4: Service, dep5: Service) -> ServiceImp3 in
       XCTAssertTrue(dep1 is ServiceImp2)
@@ -419,7 +419,7 @@ class AutoWiringTests: XCTestCase {
   func testThatItUsesTagToResolveDependenciesWithAutoWiringWith6Arguments() {
     //given
     container.register { ServiceImp1() as Service }
-    container.register(tag: "tag", .Shared) { ServiceImp2() as Service }
+    container.register(tag: "tag") { ServiceImp2() as Service }
     
     container.register { (dep1: Service, dep2: Service, dep3: Service, dep4: Service, dep5: Service, dep6: Service) -> ServiceImp3 in
       XCTAssertTrue(dep1 is ServiceImp2)

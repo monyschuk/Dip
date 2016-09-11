@@ -312,8 +312,8 @@ extension DependencyContainer {
    than _Dip_ supports (currently it's up to six) like in the following example:
    
    ```swift
-   public func register<T, A, B, C, ...>(scope: ComponentScope = .Shared, tag: Tag? = nil, factory: (A, B, C, ...) throws -> T) -> Definition<T, (A, B, C, ...)> {
-     return register(scope, tag: tag, factory: factory, numberOfArguments: ...) { container, tag in
+   public func register<T, A, B, C, ...>(scope: ComponentScope = .Shared, type: T.Type = T.self, tag: Tag? = nil, factory: (A, B, C, ...) throws -> T) -> Definition<T, (A, B, C, ...)> {
+     return register(scope: scope, type: type, tag: tag, factory: factory, numberOfArguments: ...) { container, tag in
         try factory(container.resolve(tag: tag), ...)
       }
    }
