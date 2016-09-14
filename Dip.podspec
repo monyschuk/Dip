@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "Dip"
-  s.version          = "5.0.0"
+  s.version          = "5.0.1"
   s.summary          = "Dependency Injection for Swift made easy."
 
   s.description      = <<-DESC
@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
   s.homepage         = "https://github.com/AliSoftware/Dip"
   s.license          = 'MIT'
   s.authors          = { "Olivier Halligon" => "olivier@halligon.net", "Ilya Puchka" => "ilya@puchka.me" }
-  s.source           = { :git => "https://github.com/AliSoftware/Dip.git", :tag => s.version.to_s }
+  s.source           = { :git => "https://github.com/AliSoftware/Dip.git", :branch => "swift2.3" }
   s.social_media_url = 'https://twitter.com/aligatr'
 
   s.ios.deployment_target = '8.0'
