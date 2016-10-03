@@ -22,15 +22,16 @@
 // THE SOFTWARE.
 //
 
-public enum LogLevel {
-  case Verbose
-  case Errors
+public enum LogLevel: Int {
   case None
+  case Errors
+  case Verbose
 }
+
 public var logLevel: LogLevel = .Errors
 
 func log(logLevel: LogLevel, _ message: Any) {
-  guard case logLevel = Dip.logLevel else { return }
+  guard logLevel.rawValue <= Dip.logLevel.rawValue else { return }
   print(message)
 }
 
@@ -101,7 +102,15 @@ extension Optional {
   }
 }
 
-#if os(Linux)
+#if !_runtime(_ObjC)
+  
+  extension String {
+    public func hasPrefix(prefix: String) -> Bool {
+      return prefix ==
+        String(self.characters.prefix(prefix.characters.count))
+    }
+  }
+  
   import Glibc
   class RecursiveLock {
     private var _lock = _initializeRecursiveMutex()
