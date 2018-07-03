@@ -49,8 +49,8 @@ extension DependencyContainer {
     
     let wrappedType = type(of: injectedPropertyBox).wrappedType
     let contextKey = DefinitionKey(type: wrappedType, typeOfArguments: Void.self, tag: context.tag)
-    try inContext(key:contextKey, injectedInType: context?.resolvingType, injectedInProperty: child.label, container: self.context.container, logErrors: false) {
-      try injectedPropertyBox.resolve(context.container)
+    try inContext(key:contextKey, injectedInType: context?.resolvingType, injectedInProperty: child.label, logErrors: false) {
+      try injectedPropertyBox.resolve(self)
     }
   }
   
@@ -256,7 +256,7 @@ public final class InjectedWeak<T>: _InjectedPropertyBox<T>, AutoInjectedPropert
 
 }
 
-class _InjectedPropertyBox<T> {
+public class _InjectedPropertyBox<T> {
 
   let required: Bool
   let didInject: (T) -> ()
